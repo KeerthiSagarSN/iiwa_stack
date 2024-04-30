@@ -101,10 +101,8 @@ roslaunch niryo_moveit part_1.launch
 ```
 3. If you can visualize all the ros-topics in Unity, then the connection is successful and you can perform teleoperation.
 
-
-
-
-  
+![KUKA-IIWA-TELEOP](./Images_Readme/TELEOP_IIWA.png)
+ 
 
 ## IIWA STACK
 ROS Indigo/Kinetic/Noetic metapackage for the KUKA LBR IIWA R800/R820 (7/14 Kg).
