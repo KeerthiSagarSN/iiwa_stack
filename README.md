@@ -30,8 +30,9 @@ I also used the following repository for visual aids to complete the ROSJAVA ins
 #### This needed a master and then a slave PC -> Where Master -> Runs the ROS controller, whereas the Slave -> Runs the Unity Application on Windows.
 
 1. Follow the ROS-tips from IIWA_STACK to build the repository from IIWA_STACK in your catkin_ws
-2. Importantly, carry-out the following steps correctly to both receive and also send commands to the IIWA Controller -> I faced difficulty, if I did this step incorrectly, as I was able to receive the joint states but was unable to send the move commands to the controller.
-3. 
+2. Importantly, carry-out the following steps correctly to both receive and also send commands to the IIWA Controller -> I faced difficulty, if I did this step incorrectly, as I was able to receive the joint states but was unable to send the move commands to the controller. If you cant send commands it is mainly only due tothe network configurations, do sanity check of all the IPs and bash
+3. Connect an ethernet cable between the ROS-PC to the Sunrise controller to the X66 port.
+4. Configure the ethernet IPV4 settings of the ROS-PC Laptop -> IP Address: 172.31.1.150 Netmask:255.255.0.0
 
 In a terminal
 ```
@@ -39,8 +40,72 @@ $ cd ~/catkin_ws/src/
 $ gedit ~/.bashrc
 $ export ROS_MASTER_URI=http://172.31.1.150:11311
 $ export ROS_IP=172.31.1.150
+$ source ~/.bashrc
+$ source ~/.bashrc
+```
+In a terminal - Source the installation and bash
+```
+$ cd ~/catkin_ws/src/
+$ source ~/.bashrc
+$ source devel/setup.bash
 ```
 
+5. Once this is done, normally you can launch
+
+In a terminal - Source the installation and bash
+```
+$ roscore
+```
+
+6. Now set the IIWA to AUT using the small key in the teach-pendant
+7. Click-> Application -> ROSSERVO -> Press the green play button while holding the enabling switch
+8. The applicaiton should become green and enabled
+
+In a terminal - Source the installation and bash
+```
+$ rostopic list
+```
+9. YOu should be able to see all the iiwa/state/JointPositions
+10. Be sure to build propoerly the repository, and then you can send command - /iiwa/command/JointPosition
+11. I generally move the last 7th axis joint to see if it is working
+
+### To further extend to Unity-Robotics-Hub, 
+
+Most cases, this wouldnt be required, but if the ROS-PC is not connected to a network switch, but the routing is happening through two network ports on the same ROS-PC, it is essential to do port forwarding
+
+Do this only if you are not using a network switch:
+
+In a terminal
+```
+$ sudo iptables -t nat -A PREROUTING -p tcp --dport 10000 -j DNAT --to-destination 172.31.1.150:10000
+$ sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+```
+
+Do not worry, if this messes with your system network configuration, restart your PC/Laptop and this port forwarding is reset and back to the original settings.
+
+Follow the installation procedure from [https://github.com/Unity-Technologies/Unity-Robotics-Hub](https://github.com/Unity-Technologies/Unity-Robotics-Hub)
+
+Change the Unity PC- Windows IP Address to 172.31.2.153; Subnet Mask: 255.255.255.0
+In a terminal - To establish connection from Linux to Windows Unity PC
+First need to change the ROS_IP param in the config
+1. Go to niryo_moveit/config/params.yaml
+```
+ROS_IP: 172.31.1.150
+```
+
+2. Save the params file
+
+In a terminal:
+```
+roslaunch niryo_moveit part_1.launch 
+```
+3. If you can visualize all the ros-topics in Unity, then the connection is successful and you can perform teleoperation.
+
+
+
+
+  
+13. 
 ## IIWA STACK
 ROS Indigo/Kinetic/Noetic metapackage for the KUKA LBR IIWA R800/R820 (7/14 Kg).
 
