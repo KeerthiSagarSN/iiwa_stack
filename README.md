@@ -1,5 +1,48 @@
+#### Follow the steps mentioned below in the Forked IIWA Stack
+####### Go through step by step procedure in the wiki page- It contains all information for installation.
+This repository is just for my reference, please try the following steps at your own risk.
+
+### Tips to get it working and issues I faced to get it working
+
+#### Backup process
+1. First take a backup with a KUKA provided back-up pend drive before performing any of the below options
+2. Empty the image folder in the KUKA Pendrive using an external laptop
+3. Power down the Sunrise Controller completely
+4. Plug-in the Sunrise controller to an external monitor and then plug-in the KUKA backup pendrive to the sunrise controller
+5. Now switch-on the controller, and you must observe that directly control goes to the external monitor and wait till it goes black again, meaning it is taking a backup of the full controller
+6. After the backup is complete, the fans in the controller will be turned down, indicating that the backup is complete. Turn-off the controller, remove the KUKA pendrive.
+7. Remove the HDMI cable connected to the external monitor and restart
+
+#### Controller side Tips
+1. IFL-CAMP works with KUKA Smart Servoing, so "do not mix" and "do not use" the KONI interface procedure given by KHANSARI (https://bitbucket.org/khansari/iiwa/src), use the X66 port on the kuka sunrise controller.
+2. Due to SMART Servoing package, you may experience a minor delay, if you are using the ROS package for teleoperation.
+3. Install the Latest Sunrise Workbench on your laptop.
+4. Using the ROSJAVA packages provided in the below IIWA-STACK and the procedure explicitly provided to upload  the application.
+5. Sometimes you would be required to setup the PC's IP address to be in the range of the X66 port controller, mine was in the 172.31.1.150, you can check with the network configuration on your teach pendant.
+6. Once the package is uploaded to Sunrise Controller, you will find the ROSServo in the Application tab of the teach pendant.
+7. This means that the JAVA Side installation has been successfully completed.
+
+I also used the following repository for visual aids to complete the ROSJAVA installation, but all JAVA packages are from the IIWA_STACK:
+[https://ahundt.github.io/grl/howto/iiwaKukaRobotSetup.html](https://ahundt.github.io/grl/howto/iiwaKukaRobotSetup.html)
+
+#### ROS side Tips
+### I tried to integrate the controller with Unity-Robotics-Hub repository for teleoperation
+#### This needed a master and then a slave PC -> Where Master -> Runs the ROS controller, whereas the Slave -> Runs the Unity Application on Windows.
+
+1. Follow the ROS-tips from IIWA_STACK to build the repository from IIWA_STACK in your catkin_ws
+2. Importantly, carry-out the following steps correctly to both receive and also send commands to the IIWA Controller -> I faced difficulty, if I did this step incorrectly, as I was able to receive the joint states but was unable to send the move commands to the controller.
+3. 
+
+In a terminal
+```
+$ cd ~/catkin_ws/src/
+$ gedit ~/.bashrc
+$ export ROS_MASTER_URI=http://172.31.1.150:11311
+$ export ROS_IP=172.31.1.150
+```
+
 ## IIWA STACK
-ROS Indigo/Kinetic metapackage for the KUKA LBR IIWA R800/R820 (7/14 Kg).
+ROS Indigo/Kinetic/Noetic metapackage for the KUKA LBR IIWA R800/R820 (7/14 Kg).
 
 **Current version : v-1.3.0 for Sunrise 1.10 - 1.16**    
 [Using a previous version of Sunrise?](https://github.com/SalvoVirga/iiwa_stack/wiki/FAQ#which-version-of-sunriseossunrise-workbench-is-supported)    
