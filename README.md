@@ -101,7 +101,7 @@ roslaunch niryo_moveit part_1.launch
 ```
 3. If you can visualize all the ros-topics in Unity, then the connection is successful and you can perform teleoperation.
 
-![KUKA-IIWA-TELEOP](./Images_Readme/IIWA_teleop.gif)
+![KUKA-IIWA-TELEOP](./Images_Readme/IIWA_Teleop.gif)
  
 
 ## IIWA STACK
