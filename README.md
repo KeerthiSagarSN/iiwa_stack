@@ -1,6 +1,6 @@
 #### Follow the steps mentioned below in the Forked IIWA Stack
 ####### Go through step by step procedure in the wiki page- It contains all information for installation.
-This repository is just for my reference, please try the following steps at your own risk.
+This repository is just for my reference, please follow the steps at your own risk.
 
 ### Tips to get it working and issues I faced to get it working
 
@@ -105,7 +105,7 @@ roslaunch niryo_moveit part_1.launch
 
 
   
-13. 
+
 ## IIWA STACK
 ROS Indigo/Kinetic/Noetic metapackage for the KUKA LBR IIWA R800/R820 (7/14 Kg).
 
