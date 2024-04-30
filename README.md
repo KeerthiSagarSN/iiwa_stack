@@ -1,6 +1,6 @@
 #### Follow the steps mentioned below in the Forked IIWA Stack
-####### Go through step by step procedure in the wiki page- It contains all information for installation.
-This repository is just for my reference, please follow the steps at your own risk.
+Go through step by step procedure in the IIWA_Stack wiki page in the bottom of this read-me- It contains all information for installation.
+This repository is just for documentation reference, please follow the steps at your own risk.
 
 ### Tips to get it working and issues I faced to get it working
 
@@ -101,7 +101,7 @@ roslaunch niryo_moveit part_1.launch
 ```
 3. If you can visualize all the ros-topics in Unity, then the connection is successful and you can perform teleoperation.
 
-![KUKA-IIWA-TELEOP](./Images_Readme/TELEOP_IIWA.png)
+![KUKA-IIWA-TELEOP](./Images_Readme/IIWA_teleop.gif)
  
 
 ## IIWA STACK
